@@ -14,7 +14,7 @@ const copy = async () => {
 
     const dir = await opendir(CURRENT_DIRECTORY_PATH);
     for await (const { name, path } of dir) {
-      await copyFile(`${path}/${name}`, `${NEW_DIRECTION_PATH}/${name}`);
+      copyFile(`${path}/${name}`, `${NEW_DIRECTION_PATH}/${name}`);
     }
   } catch (e) {
     console.log("FS operation failed");
