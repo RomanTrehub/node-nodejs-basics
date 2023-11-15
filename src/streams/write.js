@@ -1,4 +1,4 @@
-import { openStdin, stdin } from "node:process";
+import { openStdin } from "node:process";
 import { createWriteStream } from "node:fs";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
