@@ -1,6 +1,6 @@
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
-import { cpus } from "node:os";
+import { availableParallelism } from "node:os";
 import { Worker } from "node:worker_threads";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -23,12 +23,9 @@ const createWorker = (workerData) => {
 };
 
 const performCalculations = async () => {
-  let number = INITIAL_NUMBER;
-  const workersList = cpus().map(() => {
-    const worker = createWorker(number);
-    number++;
-    return worker;
-  });
+  const workersList = Array.from({ length: availableParallelism() }, (_, i) =>
+    createWorker(INITIAL_NUMBER + i)
+  );
   try {
     const result = await Promise.all(workersList);
     console.log(result);
