@@ -17,7 +17,7 @@ const copy = async () => {
       copyFile(`${path}/${name}`, `${NEW_DIRECTION_PATH}/${name}`);
     }
   } catch (e) {
-    console.log("FS operation failed");
+    throw new Error("FS operation failed");
   }
 };
 

@@ -10,8 +10,8 @@ const FILEPATH_TO_REMOVE = `${__dirname}/files/fileToRemove.txt`;
 const remove = async () => {
   try {
     await rm(FILEPATH_TO_REMOVE);
-  } catch (e) {
-    console.log("FS operation failed");
+  } catch {
+    throw new Error("FS operation failed");
   }
 };
 await remove();

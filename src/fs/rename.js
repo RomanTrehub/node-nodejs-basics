@@ -11,8 +11,8 @@ const NEW_PATH = `${__dirname}/files/properFilename.md`;
 const rename = async () => {
   try {
     await renamePath(OLD_PATH, NEW_PATH);
-  } catch (e) {
-    console.log("FS operation failed");
+  } catch {
+    throw new Error("FS operation failed");
   }
 };
 
