@@ -1,30 +1,20 @@
 import { argv } from "node:process";
 
-const mapToStringConcat = (map) => {
-  let string = "";
-
-  map.forEach((val, key) => {
-    string += `${key} is ${val}, `;
-  });
-
-  return string;
-};
-
 const parseArgs = () => {
-  const parsedValues = new Map();
+  const convertedValuesArr = [];
 
   argv.forEach((val, i) => {
     if (val.startsWith("--")) {
       const key = val.slice(2);
       if (argv[i + 1].startsWith("--")) {
-        parsedValues.set(key, null);
+        convertedValuesArr.push(`${key} is null`);
       } else {
-        parsedValues.set(key, argv[i + 1]);
+        convertedValuesArr.push(`${key} is ${argv[i + 1]}`);
       }
     }
   });
 
-  console.log(mapToStringConcat(parsedValues));
+  console.log(convertedValuesArr.join(", "));
 };
 
 parseArgs();
